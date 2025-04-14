@@ -1,29 +1,36 @@
-# Reto Técnico: Procesamiento de Transacciones Bancarias (CLI)
+# Procesador de Transacciones Bancarias (CLI)
 
-## Objetivo:
+## Introducción
+Este proyecto es una aplicación de línea de comandos (CLI) desarrollada en Go que procesa un archivo CSV con transacciones bancarias y genera un reporte con estadísticas clave, incluyendo el balance final, la transacción de mayor monto y el conteo de transacciones por tipo.
 
-Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CSV con transacciones bancarias y genere un reporte que incluya:
+## Instrucciones de Ejecución
 
-- **Balance Final:**  
-  Suma de los montos de las transacciones de tipo "Crédito" menos la suma de los montos de las transacciones de tipo "Débito".
+### Requisitos Previos
+- Go 1.16 o superior instalado en el sistema
 
-- **Transacción de Mayor Monto:**  
-  Identificar el ID y el monto de la transacción con el valor más alto.
+### Instalación
+1. Clona este repositorio:
+   ```
+   git clone https://github.com/imjowend/interbank-academy-25
+   cd interbank-academy-25
+   ```
 
-- **Conteo de Transacciones:**  
-  Número total de transacciones para cada tipo ("Crédito" y "Débito").
+2. Compilar la aplicación:
+   ```
+   go build -o prueba-cli
+   ```
 
----
+### Ejecución
+Para ejecutar la aplicación, usa el siguiente comando:
 
-## Instrucciones
+```
+./prueba-cli transacciones.csv
+```
 
-1. **Repositorio Base:**  
-   Clona o haz un fork del repositorio base disponible en:  
-   `https://github.com/codeableorg/interbank-academy-25`
+Donde `transacciones.csv` es la ruta al archivo CSV que contiene las transacciones bancarias.
 
-2. **Entrada de Datos:**  
-   La aplicación deberá leer un archivo CSV. Ejemplo de contenido:
-
+### Ejemplo de uso
+1. Crea un archivo CSV con el siguiente contenido:
    ```
    id,tipo,monto
    1,Crédito,100.00
@@ -33,10 +40,12 @@ Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CS
    5,Crédito,150.00
    ```
 
-3. **Salida del Programa:**  
-   La aplicación debe mostrar el reporte final en la terminal.  
-   Ejemplo de salida:
+2. Ejecuta la aplicación:
+   ```
+   ./prueba-cli transacciones.csv
+   ```
 
+3. La salida en la terminal será:
    ```
    Reporte de Transacciones
    ---------------------------------------------
@@ -45,22 +54,24 @@ Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CS
    Conteo de Transacciones: Crédito: 3 Débito: 2
    ```
 
-4. **Lenguaje de Programación:**  
-   Utiliza el lenguaje de tu preferencia. Opciones recomendadas:
+## Enfoque y Solución
 
-   - Python
-   - Java
-   - C#
-   - JavaScript (Node.js)
+La solución implementada sigue un enfoque modular y directo para procesar las transacciones bancarias:
 
-5. **README del Proyecto:**  
-   Incluye un archivo `README.md` con la siguiente estructura:
+1. **Lectura de datos**: La aplicación lee el archivo CSV línea por línea, extrayendo los datos de cada transacción.
+2. **Procesamiento**: Cada transacción se analiza para:
+    - Sumar o restar al balance final según su tipo
+    - Identificar la transacción con el mayor monto
+    - Contar el número de transacciones de cada tipo
+3. **Generación del reporte**: La aplicación formatea y muestra los resultados en la terminal.
 
-   - **Introducción:** Breve descripción del reto y su propósito.
-   - **Instrucciones de Ejecución:** Cómo instalar dependencias y ejecutar la aplicación.
-   - **Enfoque y Solución:** Lógica implementada y decisiones de diseño.
-   - **Estructura del Proyecto:** Archivos y carpetas principales.
+El código está diseñado para ser robusto, manejando posibles errores durante la lectura del archivo y la conversión de datos, lo que garantiza una experiencia de usuario sin problemas.
 
-6. **Documentación y Calidad del Código:**
-   - Código bien documentado y fácil de leer.
-   - Comentarios explicando pasos clave y lógica del programa.
+## Estructura del Proyecto
+
+- `main.go`: Contiene la lógica principal de la aplicación, incluyendo:
+    - Función `main()`: Punto de entrada de la aplicación
+    - Función `leerTransaccionesDesdeCSV()`: Lee y procesa el archivo CSV
+    - Función `generarReporte()`: Analiza las transacciones y genera el reporte final
+- `README.md`: Este archivo con documentación detallada del proyecto
+- `go.mod`: Archivo de configuración del módulo Go
